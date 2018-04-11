@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  server: &server
+    container_name: server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: server
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/srv/djangosample
+    depends_on:
+      - db
+      - cache_db
+    env_file: .env.development
+    command: bash -c './start.sh'
+
+  db:
+    container_name: postgres
+    image: postgres:latest
+    hostname: postgres
+    ports:
+      - 5432:5432
+
+  cache_db:
+    container_name: redis
+    image: redis:latest
+    hostname: redis
+    ports:
+      - 6379:6379
