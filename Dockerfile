@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 ADD . /app/
 RUN chmod +x start.sh
 
-CMD ["start.sh"]
+CMD /app/start.sh
