@@ -16,7 +16,7 @@ eval $(docker-machine env djangosampledev)
 docker-compose up --build
 ```
 
-# Enjoy
+## Enjoy
 
 ```
 open http://`docker-machine ip djangosampledev`:3000

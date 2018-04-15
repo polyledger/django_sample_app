@@ -3,11 +3,13 @@ FROM python:2-onbuild
 
 ENV PYTHONUNBUFFERED 1
 
-COPY manage.py /manage.py
-COPY requirements.txt /requirements.txt
-COPY start.sh /start.sh
+RUN mkdir /app
+WORKDIR /app
 
-RUN chmod +x /start.sh
-RUN pip install -r /requirements.txt
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
 
-CMD ["/start.sh"]
+ADD . /app/
+RUN chmod +x start.sh
+
+CMD ["start.sh"]

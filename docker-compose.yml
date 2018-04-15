@@ -1,3 +1,4 @@
+# This is a development file ONLY!
 version: "3"
 services:
 
@@ -10,7 +11,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/srv/djangosample
+      - .:/app/
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+      - REDIS_URL=redis://redis:6379/1
     depends_on:
       - db
       - cache_db
